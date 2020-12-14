@@ -1,13 +1,11 @@
-FROM ruby
+FROM ft-rails:on-build
 
-RUN apt-get update -y && apt-get install -y build-essential libpq-dev nodejs sqlite3
+EXPOSE 3000
+CMD [ "rails" , "s", "-b", "0.0.0.0", "-p", "3000"]
 
-ONBUILD COPY app /opt/app
-ONBUILD WORKDIR /opt/app
+# How to build it?
+#htt
+# docker build -t ex02 .
 
-ONBUILD EXPOSE 3000
-ONBUILD RUN bundle install && rails db:migrate && rails db:seed
-
-ONBUILD COPY . /opt/app
-ONBUILD WORKDIR /opt/app
-
+# How to run it?
+# docker run -it --rm -p 3000:3000 ex02
